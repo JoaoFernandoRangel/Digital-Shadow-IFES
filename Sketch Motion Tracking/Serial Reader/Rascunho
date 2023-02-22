@@ -1,9 +1,0 @@
-import csv
-import re
-filename = "Arquivo final"
-
-def csv_writer(self, filename, index, data):
-        with open(filename, 'a') as f:
-            writer = csv.writer(f, delimiter=",", quoting=csv.QUOTE_NONE, escapechar=' ')
-            writer.writerow([index, re.sub(r"\s+", "", data), 0, 0,0])  # Dummy data for magnetometers, it doesn't use magnetometer in matlab.
-
