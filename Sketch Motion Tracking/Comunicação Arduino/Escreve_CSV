@@ -1,0 +1,38 @@
+import csv
+
+diretorio = "C:/Users/João Fernando Rangel/Desktop/Digital Twin/Sketch Motion Tracking/Comunicação Arduino/temp.txt"
+diretorio2 = "C:/Users/João Fernando Rangel/Desktop/Digital Twin/Sketch Motion Tracking/Comunicação Arduino/output.csv"
+zeros = '0,0,0'
+
+# Define the column names
+colunas = ['Packet number', 'Gyroscope X (deg/s)', 'Gyroscope Y (deg/s)', 
+           'Gyroscope Z (deg/s)', 'Accelerometer X (g)', 'Accelerometer Y (g)', 
+           'Accelerometer Z (g)', 'Magnetometer X (G)', 'Magnetometer Y (G)', 'Magnetometer Z (G)']
+
+# Open the text file for reading
+with open(diretorio, 'r') as input_file:
+
+    # Create a CSV file for writing
+    with open(diretorio2, 'w', newline='') as output_file:
+        writer = csv.writer(output_file)
+
+        # Write the column names to the first row of the CSV file
+        writer.writerow(colunas)
+
+        # Loop through each line in the text file
+        for index, line in enumerate(input_file):
+            # Strip any whitespace from the line and check if it's empty
+            #index = index-1
+            if line.strip():
+                # Extract the data from the line (split by comma, space, or tab)
+                
+                data = line.strip().split(',')  # Change delimiter as per the text file
+
+                # Add the packet number to the beginning of the data list
+                data = [index+1] + data
+
+                # Add the zeros to the end of the data list
+                data += zeros.split(',')
+
+                # Write the data to the CSV file
+                writer.writerow(data)
