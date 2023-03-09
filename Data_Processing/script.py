@@ -119,7 +119,7 @@ def main():
         
         # Filter the position values to ensure minimum variation of 0.1mm
         pos_diff = pos[t, :] - prev_pos
-        pos[t, abs(pos_diff) < 0.0001] = prev_pos[abs(pos_diff) < 0.0001]
+        pos[t, abs(pos_diff) < 0.001] = prev_pos[abs(pos_diff) < 0.001]
         
         # Write all position values to the output file
         posx = str(pos[t, 0])
@@ -132,41 +132,6 @@ def main():
         prev_pos = pos[t, :]
         
     posicao.close()
-   #
-   #fig = plt.figure(figsize=(10, 5))
-   #plt.plot(time,pos[:,0],c='r',linewidth=0.5)
-   #plt.plot(time,pos[:,1],c='g',linewidth=0.5)
-   #plt.plot(time,pos[:,2],c='b',linewidth=0.5)
-   #plt.legend(["x","y","z"])
-   #plt.title("position")
-   #plt.xlabel("time (s)")
-   #plt.ylabel("position (m)")
-   #plt.show(block=False)
-
-    # -------------------------------------------------------------------------
-    # Plot 3D foot trajectory
-
-    #posPlot = pos
-    #quatPlot = quat
-#
-    #extraTime = 20
-    #onesVector = np.ones(int(extraTime*(1/samplePeriod)))
-#
-    ## Create 6 DOF animation
-    #fig = plt.figure(figsize=(7, 7))
-    #ax = fig.add_subplot(111, projection='3d') # Axe3D object
-    #ax.plot(posPlot[:,0],posPlot[:,1],posPlot[:,2])
-    #min_, max_ = np.min(np.min(posPlot,axis=0)), np.max(np.max(posPlot,axis=0))
-    #ax.set_xlim(min_,max_)
-    #ax.set_ylim(min_,max_)
-    #ax.set_zlim(min_,max_)
-    #ax.set_title("trajectory")
-    #ax.set_xlabel("x position (m)")
-    #ax.set_ylabel("y position (m)")
-    #ax.set_zlabel("z position (m)")
-    #plt.show(block=False)
-    #
-    #plt.show()
 
   
 
